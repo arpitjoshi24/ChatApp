@@ -1,4 +1,4 @@
- // backend/routes/chatRoutes.js
+
 import express from "express";
 import fs from "fs";
 import path from "path";
@@ -8,13 +8,12 @@ import { protect } from "../middleware/authMiddleware.js";
 import { uploadHandler } from "../utils/uploadHandler.js";
 
 const router = express.Router();
-// Get all messages with a specific user
+
 router.get("/:receiverId", protect, getMessages);
 
-// Send a new message (with file support)
+
 router.post("/send", protect, uploadHandler, sendMessage);
 
-// Download a file by filename
 router.get("/download/:filename", protect, (req, res) => {
   const filename = req.params.filename;
   const filePath = path.join(process.cwd(), "uploads", filename);

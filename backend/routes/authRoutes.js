@@ -10,17 +10,16 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-// Utility: generate JWT token
+
 const generateToken = (user) => {
   return jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
-// ---------------- Local Auth ----------------
 router.post("/signup", registerUser);
 router.post("/login", loginUser);
 router.get("/profile", protect, getUserProfile);
 
-// ---------------- Google OAuth ----------------
+
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get(
@@ -32,7 +31,6 @@ router.get(
   }
 );
 
-// ---------------- Facebook OAuth ----------------
 router.get("/facebook", passport.authenticate("facebook", { scope: ["email"] }));
 
 router.get(
@@ -44,7 +42,6 @@ router.get(
   }
 );
 
-// ---------------- LinkedIn OAuth ----------------
 router.get("/linkedin", passport.authenticate("linkedin", { state: true }));
 
 router.get(

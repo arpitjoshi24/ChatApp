@@ -1,4 +1,4 @@
-// backend/controllers/saveSocketMessage.js
+
 import Message from "../models/Message.js";
 
 export const saveSocketMessage = async ({ senderId, receiverId, text, file }) => {

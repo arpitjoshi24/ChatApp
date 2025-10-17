@@ -7,11 +7,8 @@ import FacebookStrategy from "passport-facebook";
 import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2";
 
 import User from "../models/User.js";
-import generateToken from "../utils/generateToken.js"; // JWT generator
 
-// -----------------------------
-// Serialize & Deserialize User
-// -----------------------------
+
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
   try {
@@ -22,9 +19,7 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// -----------------------------
-// Google OAuth
-// -----------------------------
+
 passport.use(
   new GoogleStrategy(
     {
@@ -53,9 +48,7 @@ passport.use(
   )
 );
 
-// -----------------------------
-// Facebook OAuth
-// -----------------------------
+
 passport.use(
   new FacebookStrategy(
     {
@@ -87,9 +80,6 @@ passport.use(
   )
 );
 
-// -----------------------------
-// LinkedIn OAuth
-// -----------------------------
 passport.use(
   new LinkedInStrategy(
     {
