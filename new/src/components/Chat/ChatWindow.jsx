@@ -18,7 +18,7 @@ export default function ChatWindow() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Fetch users
+
   useEffect(() => {
     if (!user) return;
     setIsLoading(true);
@@ -31,7 +31,6 @@ export default function ChatWindow() {
       .finally(() => setIsLoading(false));
   }, [user]);
 
-  // Fetch messages
   useEffect(() => {
     if (!receiverId || !user) return;
     setIsLoading(true);
@@ -44,7 +43,6 @@ export default function ChatWindow() {
       .finally(() => setIsLoading(false));
   }, [receiverId, user]);
 
-  // Setup socket
   useEffect(() => {
     if (!user) return;
     socket.emit("join_room", user._id);
@@ -62,12 +60,12 @@ export default function ChatWindow() {
     return () => socket.off("receive_message");
   }, [receiverId, user]);
 
-  // Auto scroll
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Send message
+
   const handleSend = async (text, file) => {
   if (!text && !file) return;
   if (!user || !receiverId) return;
@@ -84,7 +82,7 @@ export default function ChatWindow() {
       formData.append("file", file);
     }
 
-    // Send to backend
+
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL || "http://localhost:5000"}/api/chat/send`,
       formData,
@@ -98,10 +96,9 @@ export default function ChatWindow() {
 
     const sentMessage = response.data;
 
-    // Update messages with the response from server
     setMessages((prev) => [...prev, sentMessage]);
 
-    // Emit socket event for real-time update
+   
     socket.emit("send_message", {
       _id: sentMessage._id,
       sender: { _id: user._id, name: user.name },
@@ -114,8 +111,8 @@ export default function ChatWindow() {
     });
 
   } catch (err) {
-    console.error("❌ Error sending message:", err);
-    throw err; // Re-throw to handle in MessageInput
+    console.error(" Error sending message:", err);
+    throw err;
   }
 };
 
@@ -123,9 +120,9 @@ export default function ChatWindow() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar - Users List */}
+     
       <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
-        {/* Header */}
+       
         <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
           <div className="flex items-center justify-between">
             <div>
@@ -140,9 +137,7 @@ export default function ChatWindow() {
           </div>
         </div>
 
-        
-
-        {/* Users List */}
+      
         <div className="flex-1 overflow-y-auto">
           <h3 className="px-4 py-3 text-sm font-semibold text-gray-500 bg-gray-50">CONTACTS</h3>
           {isLoading ? (
@@ -180,9 +175,9 @@ export default function ChatWindow() {
         </div>
       </div>
 
-      {/* Chat Area */}
+  
       <div className="flex-1 flex flex-col">
-        {/* Chat Header */}
+ 
         {selectedUser ? (
           <div className="bg-white border-b border-gray-200 px-6 py-4">
             <div className="flex items-center justify-between">
@@ -211,7 +206,6 @@ export default function ChatWindow() {
           </div>
         )}
 
-        {/* Messages Area */}
         <div className="flex-1 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100">
           {selectedUser ? (
             <>
@@ -243,7 +237,7 @@ export default function ChatWindow() {
           )}
         </div>
 
-        {/* Message Input */}
+  
         {selectedUser && <MessageInput onSend={handleSend} />}
       </div>
     </div>

@@ -40,7 +40,7 @@ export default function SignupForm() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
+    
         <div className="text-center">
           <div className="mx-auto h-12 w-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
             <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -192,7 +192,6 @@ export default function SignupForm() {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="text-center text-xs text-gray-500 mt-4">
           By creating an account, you agree to our Terms of Service and Privacy Policy
         </div>

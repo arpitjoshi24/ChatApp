@@ -20,7 +20,7 @@ export default function MessageInput({ onSend }) {
       setText("");
       setFile(null);
       
-      // Reset file input
+    
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -41,14 +41,14 @@ export default function MessageInput({ onSend }) {
   const handleFileSelect = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      // Validate file size (e.g., 10MB limit)
-      const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+     
+      const maxSize = 10 * 1024 * 1024; 
       if (selectedFile.size > maxSize) {
         alert("File size too large. Please select a file smaller than 10MB.");
         return;
       }
       
-      // Validate file type
+
       const allowedTypes = [
         'image/jpeg', 'image/jpg', 'image/png', 'image/gif',
         'application/pdf', 
@@ -80,7 +80,7 @@ export default function MessageInput({ onSend }) {
       
       setText(newText);
       
-      // Set cursor position after the inserted emoji
+
       setTimeout(() => {
         textarea.selectionStart = textarea.selectionEnd = start + emoji.length;
         textarea.focus();
@@ -92,7 +92,7 @@ export default function MessageInput({ onSend }) {
     setShowEmojiPicker(false);
   };
 
-  // Close emoji picker when clicking outside
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
@@ -106,7 +106,6 @@ export default function MessageInput({ onSend }) {
     };
   }, []);
 
-  // Auto-resize textarea
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -148,7 +147,7 @@ export default function MessageInput({ onSend }) {
         </div>
       )}
 
-      {/* Emoji Picker */}
+
       {showEmojiPicker && (
         <div 
           ref={emojiPickerRef}
@@ -169,7 +168,7 @@ export default function MessageInput({ onSend }) {
       )}
 
       <form onSubmit={handleSubmit} className="flex items-end gap-3">
-        {/* File Upload Button */}
+       
         <input
           ref={fileInputRef}
           type="file"
@@ -193,7 +192,6 @@ export default function MessageInput({ onSend }) {
           </svg>
         </label>
 
-        {/* Text Input */}
         <div className="flex-1 relative">
           <textarea
             ref={textareaRef}
@@ -207,8 +205,7 @@ export default function MessageInput({ onSend }) {
             }}
             disabled={isUploading}
           />
-          
-          {/* Emoji Button */}
+    
           <button
             type="button"
             onClick={() => setShowEmojiPicker(!showEmojiPicker)}
@@ -227,7 +224,6 @@ export default function MessageInput({ onSend }) {
           </button>
         </div>
 
-        {/* Send Button */}
         <button
           type="submit"
           disabled={(!text.trim() && !file) || isUploading}
@@ -251,18 +247,12 @@ export default function MessageInput({ onSend }) {
         </button>
       </form>
 
-      {/* Keyboard Shortcut Hint */}
-      <div className="flex items-center justify-between mt-2 px-1">
-        <div className="flex items-center space-x-4 text-xs text-gray-400">
-          <span>Press Enter to send</span>
-          <span>Shift + Enter for new line</span>
-        </div>
-      </div>
+    
     </div>
   );
 }
 
-// Helper function to format file size
+
 function formatFileSize(bytes) {
   if (!bytes) return '0 B';
   if (bytes < 1024) return bytes + ' B';

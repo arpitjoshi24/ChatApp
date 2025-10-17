@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Load user from localStorage when the provider mounts
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -36,5 +36,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use auth in any component
+
 export const useAuth = () => useContext(AuthContext);

@@ -31,7 +31,7 @@ export default function MessageList({ messages, currentUserId }) {
     }
   };
 
-  // Function to get file icon based on extension
+
   const getFileIcon = (filename) => {
     const ext = filename.split('.').pop()?.toLowerCase();
     const iconClass = "w-5 h-5 mr-2";
@@ -82,7 +82,7 @@ export default function MessageList({ messages, currentUserId }) {
     }
   };
 
-  // Function to format file size
+
   const formatFileSize = (bytes) => {
     if (!bytes) return '';
     if (bytes < 1024) return bytes + ' B';
@@ -105,7 +105,7 @@ export default function MessageList({ messages, currentUserId }) {
             className={`flex ${isMe ? "justify-end" : "justify-start"}`}
           >
             <div className={`flex flex-col max-w-xs lg:max-w-md ${isMe ? "items-end" : "items-start"}`}>
-              {/* Sender name */}
+       
               {!isMe && (
                 <div className="flex items-center mb-1">
                   <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-semibold mr-2">
@@ -115,7 +115,6 @@ export default function MessageList({ messages, currentUserId }) {
                 </div>
               )}
 
-              {/* Message bubble */}
               <div
                 className={`relative rounded-2xl px-4 py-3 shadow-sm ${
                   isMe 
@@ -123,12 +122,11 @@ export default function MessageList({ messages, currentUserId }) {
                     : "bg-white text-gray-800 border border-gray-200 rounded-bl-md"
                 }`}
               >
-                {/* Text message */}
+            
                 {msg.message && (
                   <p className="text-sm whitespace-pre-wrap break-words">{msg.message}</p>
                 )}
 
-                {/* File message */}
                 // In your MessageList component, update the file display part:
 {msg.type === "file" && msg.fileUrl && (
   <button
@@ -142,7 +140,7 @@ export default function MessageList({ messages, currentUserId }) {
     {getFileIcon(msg.fileUrl)}
     <div className="flex-1 text-left min-w-0">
       <p className={`text-sm font-medium truncate ${isMe ? "text-white" : "text-gray-700"}`}>
-        {msg.fileUrl.split('/').pop()} {/* Show only filename */}
+        {msg.fileUrl.split('/').pop()} 
       </p>
       <p className={`text-xs ${isMe ? "text-blue-100" : "text-gray-500"}`}>
         {formatFileSize(msg.fileSize)} • Click to download
@@ -159,7 +157,7 @@ export default function MessageList({ messages, currentUserId }) {
   </button>
 )}
 
-                {/* Message status indicator for sent messages */}
+               
                 {isMe && (
                   <div className="flex justify-end mt-1">
                     <svg className="w-4 h-4 text-blue-200" fill="currentColor" viewBox="0 0 20 20">

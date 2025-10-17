@@ -30,7 +30,7 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8">
-        {/* Header */}
+    
         <div className="text-center">
           <div className="mx-auto h-12 w-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
             <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,7 +43,7 @@ export default function LoginForm() {
           </p>
         </div>
 
-        {/* Form Container */}
+        
         <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
           {error && (
             <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
@@ -121,7 +121,7 @@ export default function LoginForm() {
             </button>
           </form>
 
-          {/* Divider */}
+     
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -132,7 +132,6 @@ export default function LoginForm() {
               </div>
             </div>
 
-            {/* OAuth Buttons */}
             <div className="mt-4 grid grid-cols-1 gap-3">
               <a
                 href="http://localhost:5000/api/auth/google"

@@ -11,7 +11,6 @@ export const SocketProvider = ({ children }) => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
 
-    // Cleanup on unmount
     return () => newSocket.disconnect();
   }, []);
 
@@ -22,5 +21,4 @@ export const SocketProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use socket in any component
 export const useSocket = () => useContext(SocketContext);
